@@ -1,2 +1,2 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0.100
-FROM mcr.microsoft.com/dotnet/aspnet:8.0.0
+FROM mcr.microsoft.com/dotnet/sdk:10.0.301
+FROM mcr.microsoft.com/dotnet/aspnet:10.0.9
