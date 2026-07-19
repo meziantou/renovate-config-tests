@@ -1,1 +1,1 @@
-curl -L https://github.com/astral-sh/uv/releases/download/0.1.0/uv-installer.sh
+curl -L https://github.com/astral-sh/uv/releases/download/0.11.29/uv-installer.sh
