@@ -1,0 +1,1 @@
+curl -L https://github.com/astral-sh/uv/releases/download/0.12.4/uv-installer.sh
