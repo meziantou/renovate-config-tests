@@ -1,0 +1,129 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Meziantou\u0027s default preset",
+  "extends": [
+    "config:recommended",
+    "schedule:nonOfficeHours",
+    ":semanticCommits",
+    ":enableVulnerabilityAlerts",
+    ":pinDevDependencies",
+    "helpers:pinGitHubActionDigests",
+    "group:allNonMajor"
+  ],
+  "ignorePresets": [
+    ":ignoreModulesAndTests"
+  ],
+  "dependencyDashboard": false,
+  "configMigration": true,
+  "reviewersFromCodeOwners": true,
+  "regexManagers": [
+    {
+      "description": "nuspec files manager",
+      "fileMatch": [
+        "\\.nuspec$"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\u003Cdependency\\s\u002Bid=\u0022(?\u003CdepName\u003E.*?)\u0022\\s\u002Bversion=\u0022(?\u003CcurrentValue\u003E.*?)\u0022\\s*\\/\u003E"
+      ],
+      "datasourceTemplate": "nuget",
+      "versioningTemplate": "nuget"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^.*\\.cs$"
+      ],
+      "matchStrings": [
+        "\u0022(?\u003CdepName\u003Eghcr\\.io/meziantou/[^:]\u002B):(?\u003CcurrentValue\u003E.\u002B?)\u0022",
+        "ImageSource\\.FromRegistry\\(\u0022(?\u003CdepName\u003E.\u002B):(?\u003CcurrentValue\u003E[^\u0022@]\u002B)\u0022\\)"
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        ".*"
+      ],
+      "matchStrings": [
+        "https://github.com/(?\u003CdepName\u003E[^/]\u002B/[^/]\u002B)/releases/download/(?\u003CcurrentValue\u003E[^/]\u002B?)/"
+      ],
+      "datasourceTemplate": "github-releases"
+    }
+  ],
+  "packageRules": [
+    {
+      "groupName": "all-dependencies",
+      "matchPackageNames": [
+        "/.*/"
+      ],
+      "stabilityDays": 14
+    },
+    {
+      "matchPackageNames": [
+        "Meziantou.ProjectConfiguration"
+      ],
+      "matchManagers": [
+        "nuget"
+      ],
+      "replacementName": "Meziantou.DotNet.CodingStandard"
+    },
+    {
+      "matchPackageNames": [
+        "XUnitToFluentAssertionsAnalyzer"
+      ],
+      "matchManagers": [
+        "nuget"
+      ],
+      "replacementName": "Meziantou.FluentAssertionsAnalyzers"
+    },
+    {
+      "matchUpdateTypes": [
+        "pin",
+        "pinDigest",
+        "digest"
+      ],
+      "groupName": "Pin dependencies"
+    },
+    {
+      "groupName": "meziantou-dependencies",
+      "matchPackageNames": [
+        "/^ghcr.io/meziantou/.*/i",
+        "/^meziantou(\\.|$)/i"
+      ],
+      "pinDigests": false,
+      "stabilityDays": 0
+    },
+    {
+      "groupName": "trusted-dependencies",
+      "matchPackageNames": [
+        "/^mcr.microsoft.com/dotnet/.*/i",
+        "/^alpine$/i",
+        "/^azure\\.$/i",
+        "/^microsoft\\.$/i",
+        "/^nuget\\.$/i",
+        "/^system\\.$/i",
+        "actions/cache",
+        "actions/checkout",
+        "actions/setup-dotnet",
+        "actions/stale",
+        "actions/download-artifact",
+        "actions/upload-artifact"
+      ],
+      "pinDigests": false,
+      "stabilityDays": 7
+    },
+    {
+      "matchPackageNames": [
+        "/.*/"
+      ],
+      "minimumReleaseAge": null
+    }
+  ],
+  "docker": {
+    "pinDigests": true
+  },
+  "schedule": [
+    "at any time"
+  ]
+}
