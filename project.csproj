@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Framework.FullPath" Version="1.0.0" />
+    <PackageReference Include="Meziantou.Framework.TemporaryDirectory" Version="1.0.0" />
+    <PackageReference Include="Meziantou.ProjectConfiguration" Version="1.0.0" />
+    <PackageReference Include="XUnitToFluentAssertionsAnalyzer" Version="1.0.0" />
+  </ItemGroup>
+</Project>
